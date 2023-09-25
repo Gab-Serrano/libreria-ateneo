@@ -25,6 +25,14 @@ public class Catalogo {
         }
     }
     
+    public String imprimirCatalogo(){
+        String exportMenu = "";
+        for (Libro libro : catalogo) {
+            exportMenu = exportMenu + libro.infoLibroToString();
+        }
+        return exportMenu;
+    }
+    
     //Eliminar libros
     public void eliminarLibroIsbn (String isbn){
         for (Libro libro : catalogo) {
@@ -35,6 +43,17 @@ public class Catalogo {
         }
     }
     
+    
+    public boolean eliminarLibroIsbnConfirm (String isbn){
+        for (Libro libro : catalogo) {
+            if (libro.getIsbn().equalsIgnoreCase(isbn)){
+                catalogo.remove(libro);
+                return true;
+            }          
+        }
+        return false;
+    }
+    
     //buscar por apellido autor
     public void buscarLibroApellido (String apellido){
         for (Libro libro : catalogo) {
@@ -43,5 +62,16 @@ public class Catalogo {
                 break;
             }
         }
+    }
+    
+    public String buscarLibroApellidoToString (String apellido){
+        String infoLibroExport = "";
+        for (Libro libro : catalogo) {
+            if (libro.getAutor().getApellido().equalsIgnoreCase(apellido)){
+                infoLibroExport = libro.infoLibroToString();
+                break;
+            }            
+        }
+        return infoLibroExport;
     }
 }

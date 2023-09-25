@@ -50,6 +50,11 @@ public class Autor {
     
     //Custom
     
+      public String infoAutorToString(){
+        return "Autor: " + nombre + " " + apellido + " (" + nacionalidad + ")";
+    }
+    
+    
     public void imprimirInfo(){
         System.out.println("Nombre: " + this.nombre + "\nApellido: " + this.apellido + "\nNacionalidad: " + this.nacionalidad);
     }

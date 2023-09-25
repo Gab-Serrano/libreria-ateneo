@@ -21,7 +21,7 @@ public class Test2 {
 
             String strOpcion = JOptionPane.showInputDialog(menu);
             int opcion = Integer.parseInt(strOpcion);
-            
+
             switch (opcion) {
                 case 1:
                     //Añadir libro
@@ -41,25 +41,32 @@ public class Test2 {
                     Autor autor = new Autor(nombre, apellido, nacionalidad);
                     Libro libro = new Libro(titulo, autor, precio, isbn);
                     cat.agregaLibros(libro);
-                    
+
                     break;
                 case 2:
                     //Mostrar libros
-                    cat.mostrarCatalogo();
+                    if (!cat.imprimirCatalogo().isEmpty()) {
+                        JOptionPane.showMessageDialog(null, cat.imprimirCatalogo());
+                    } else {
+                        JOptionPane.showMessageDialog(null, "No hay libros en catálogo");
+                    }
+
                     break;
                 case 3:
                     //Buscar libro por apellido
-                    System.out.println("Ingrese el apellido del autor a buscar: ");
-                    // String apellidoAutor = scn.nextLine();
-                    //  cat.buscarLibroApellido(apellidoAutor);
+                    String apellidoAutor = JOptionPane.showInputDialog("Ingrese el apellido del autor a buscar: ");
+                    JOptionPane.showMessageDialog(null, cat.buscarLibroApellidoToString(apellidoAutor));
                     break;
                 case 4:
-                    System.out.println("Ingrese el ISBN a eliminar");
-                    //  String isbnAEliminar = scn.nextLine();
-                    // cat.eliminarLibroIsbn(isbnAEliminar);
+                    String isbnAEliminar = JOptionPane.showInputDialog("Ingrese el ISBN a eliminar");
+                    if (cat.eliminarLibroIsbnConfirm(isbnAEliminar)) {
+                        JOptionPane.showMessageDialog(null, "Libro eliminado con éxito.");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Libro no encontrado.");
+                    }
                     break;
                 case 5:
-                    System.out.println("¡Hasta luego!");
+                    JOptionPane.showMessageDialog(null, "¡Hasta luego!");
                     return;
                 default:
                     throw new AssertionError();

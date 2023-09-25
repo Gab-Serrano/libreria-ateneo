@@ -60,11 +60,15 @@ public class Libro {
     @Override
     public String toString() {
         return "Libro{" + "titulo=" + titulo + ", autor=" + autor + ", precio=" + precio + ", isbn=" + isbn + '}';
-    }  
+    }
     
     //Métodos personalizados / custom
     public void imprimirInfo (){
         System.out.println("Título: " + this.titulo + "\nAutor: " + this.autor + "\nPrecio: " + this.precio + "\nISBN: " + this.isbn);
+    }
+    
+    public String infoLibroToString (){
+        return "titulo = " + titulo + "\n" + autor.infoAutorToString() + "\nprecio = " + precio + "\nisbn = " + isbn;
     }
    
     public double calcularIva (){
